@@ -33,7 +33,8 @@ namespace Sonnetly.Controllers
             {
                 newBM.Created = DateTime.Now;
                 newBM.OwnerId = User.Identity.GetUserId();
-                //newBm.NewUrl = ConvertUrl();
+                newBM.NewUrl = Helpers.EncryptURL.AndGo(newBM.OriginalUrl, newBM.OwnerId);
+
                 db.Bookmarks.Add(newBM);
                 db.SaveChanges();
 

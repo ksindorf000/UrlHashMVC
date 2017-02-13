@@ -17,9 +17,13 @@ namespace Sonnetly.Helpers
 
         static void Main(string[] args)
         {
-            //Get hashed key from user input
-            var myInput = Console.ReadLine();
-            string hashKey = Encrypt256(myInput);
+        }
+
+        public static string AndGo(string uInput, string ownerId)
+        {
+            string original = uInput + ownerId;
+
+            string hashKey = Encrypt256(original);
 
             //Get lines
             List<string> lineList = new List<string>();
@@ -37,6 +41,9 @@ namespace Sonnetly.Helpers
             }
 
             results = Results(rWords);
+
+            return results;
+
         }
 
         /*****************************************
@@ -72,12 +79,15 @@ namespace Sonnetly.Helpers
             int lineNum = 0;
             bool invalid = true;
 
+            //https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.mappath(v=vs.110).aspx
+            var path = HttpContext.Current.Server.MapPath("/TheSonnet.txt");
+
             //If first three numbers are out of bounds,
             //get next three numbers
             while (invalid)
             {
                 lineNum = int.Parse(hashKey.Substring(indexStart, 3));
-                invalid = lineNum > File.ReadLines(@"..\..\TheSonnets.txt").Count() ? true : false;
+                invalid = lineNum > File.ReadLines(path).Count() ? true : false;
                 indexStart++;
             }
 
