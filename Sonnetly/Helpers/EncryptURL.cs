@@ -80,7 +80,7 @@ namespace Sonnetly.Helpers
             bool invalid = true;
 
             //https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.mappath(v=vs.110).aspx
-            var path = HttpContext.Current.Server.MapPath("/TheSonnet.txt");
+            var path = HttpContext.Current.Server.MapPath(@"\TextFiles\TheSonnets.txt");
 
             //If first three numbers are out of bounds,
             //get next three numbers
