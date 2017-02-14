@@ -3,20 +3,27 @@
 }
 
 <div>
-
     <img class="portrait" src="http://www.ystari.com/wp-content/uploads/2015/08/Shakespeare.png" />
 
     <div class="panel panel-home">
         <div class="panel-heading">
-            <h1>Welcome to Sonnet-ly!</h1>
-            <hr />
+            <h1>
+                Shakespeare says...
+            </h1>
         </div>
         <div class="panel-body">
-            <p>
-                @Html.ActionLink("Sign Up", "Register", "Account") or @Html.ActionLink("Log In", "Login", "Account")
-                to save custom URLs, written by yours truely!
-            </p>
+            <ul>
+                @foreach (var sonnet in ViewBag.sonnetList)
+                  {
+                    <li>
+                        <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>
+                    </li>
+                   }
+            </ul>            
         </div>
+        <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar">
+            [ <span class="glyphicon glyphicon-plus"></span>
+            Add Your Own ]
+        </a>
     </div>
-
 </div>

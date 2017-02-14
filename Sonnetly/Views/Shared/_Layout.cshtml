@@ -27,10 +27,10 @@
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Sonnets", "AllSonnets", "Bookmark")</li>
+                        <li>@Html.ActionLink("All Sonnets", "Index", "Bookmark")</li>
                         @{ if (Context.User.Identity.IsAuthenticated)
                             {
-                                <li>@Html.ActionLink("My Sonnets", "Index", "Bookmark")</li>
+                                <li>@Html.ActionLink("My Sonnets", "Index", "User")</li>
                             }
                         }
                     </ul>

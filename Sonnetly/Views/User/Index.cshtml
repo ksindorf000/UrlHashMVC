@@ -1,13 +1,13 @@
-﻿@model Sonnetly.Models.Bookmarks
+﻿@model Sonnetly.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "All Sonnets";
+    ViewBag.Title = "Index";
 }
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h1>
-            @ViewBag.Title
+            @Model.UserName.ToUpper()'s Sonnets
             <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span></a>
         </h1>
     </div>
@@ -15,14 +15,17 @@
         @foreach (var sonnet in ViewBag.sonnetList)
             {
             <div class="panel-heading">
-                <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>    <span class="badge">@sonnet.NumClicks</span>
+                <span class="badge">@sonnet.NumClicks</span>   @sonnet.Title 
             </div>
             <div class="panel-body">
-                <h4>@sonnet.Title</h4>                
+                <p>@sonnet.Created</p>
                 <p>@sonnet.Desc</p>
-                <sub>Create by @sonnet.Owner.UserName on @sonnet.Created</sub> 
-                <hr/>               
+                <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>
+                <hr />
             </div>
-            }
+        }
     </div>
 </div>
+
+
+

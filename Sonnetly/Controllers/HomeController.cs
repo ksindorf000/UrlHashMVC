@@ -14,7 +14,7 @@ namespace Sonnetly.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.path = Directory.GetCurrentDirectory();
+            ViewBag.sonnetList = db.Bookmarks.OrderByDescending(b => b.Created).ToList();
             return View();
         }
 

@@ -26,12 +26,13 @@ textarea {
 /*------------------------------------*/
 
 body {
-    padding-bottom: 150px;
+    padding-bottom: 130px;
 }
 
 .portrait {
     max-width: 40%;
     float: left;
+    bottom: 0;
 }
 
 .navbar {
@@ -48,10 +49,10 @@ body {
     border: none;
 }
 
-.panel-home a {
-    color: #0c0c0c;
-    font-weight: 800;
-}
+    .panel-home a {
+        color: #0c0c0c;
+        font-weight: 800;
+    }
 
 .panel-default {
     background-color: transparent;
@@ -59,12 +60,22 @@ body {
     border: none;
 }
 
-.panel-default a {
-    color: #0c0c0c;
-    font-weight: 800;
+    .panel-default a {
+        color: #0c0c0c;
+        font-weight: 800;
+    }
+
+    .panel-default .panel-heading {
+        background-color: transparent;
+        color: #0c0c0c;
+    }
+
+.panel-home .panel-body {
+    max-height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.panel-default .panel-heading {
-    background-color: transparent;
-    color: #0c0c0c;
+.panel-home li {
+    padding: 15px;
 }
