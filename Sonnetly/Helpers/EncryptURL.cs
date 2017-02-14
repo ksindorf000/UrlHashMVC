@@ -31,7 +31,7 @@ namespace Sonnetly.Helpers
 
             //Get lines
             List<string> lineList = new List<string>();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 lineNum = GetLineNum(hashKey);
                 lineList.Add(GetLine(lineNum));

@@ -25,6 +25,10 @@ textarea {
 
 /*------------------------------------*/
 
+body {
+    padding-bottom: 150px;
+}
+
 .portrait {
     max-width: 40%;
     float: left;

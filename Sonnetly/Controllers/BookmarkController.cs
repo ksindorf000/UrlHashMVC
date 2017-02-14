@@ -2,6 +2,7 @@
 using Sonnetly.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -67,8 +68,7 @@ namespace Sonnetly.Controllers
 
             }
 
-            RedirectToAction("Index");
-            return View();
+            return Redirect("Index");
         }
 
         //GET: All Sonnets
@@ -81,10 +81,13 @@ namespace Sonnetly.Controllers
         //SEND: Redirect to original Url
         [Route("Sonnet/{NewUrl}")]
         public ActionResult SonnetRedirect(string newUrl)
-        {
-            //Add click to db
-
+        {            
             var sonnet = db.Bookmarks.Where(b => b.NewUrl == newUrl).FirstOrDefault();
+
+            //Add click to db
+            sonnet.NumClicks += 1;
+            db.Entry(sonnet).State = EntityState.Modified;
+            db.SaveChanges();
 
             return new RedirectResult(sonnet.OriginalUrl);
         }
