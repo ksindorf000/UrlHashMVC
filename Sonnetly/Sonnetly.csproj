@@ -258,6 +258,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Bookmark\Create.cshtml" />
+    <Content Include="Views\Bookmark\Index.cshtml" />
+    <Content Include="Views\Bookmark\AllSonnets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

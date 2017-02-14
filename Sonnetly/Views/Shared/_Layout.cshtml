@@ -27,6 +27,12 @@
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Sonnets", "AllSonnets", "Bookmark")</li>
+                        @{ if (Context.User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("My Sonnets", "Detail", "Bookmark")</li>
+                            }
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

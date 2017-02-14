@@ -8,14 +8,41 @@ using System.Web.Mvc;
 
 namespace Sonnetly.Controllers
 {
+    [Authorize]
     public class BookmarkController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
-        // GET: Bookmark
+                
+        // GET: Current User
         public ActionResult Index()
         {
-            return View();
+            string userId = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users
+                .Where(u => u.Id == userId) 
+                .FirstOrDefault(); 
+            //User Specific Sonnets
+            ViewBag.sonnetList = db.Bookmarks
+                .Where(b => b.Owner.Id == userId)
+                .OrderByDescending(b => b.Created)
+                .ToList();
+            return View(currentUser);
+        }
+
+
+        // DETAILS: User from Route
+        //Using an Attribute Route
+        //Route(pattern)
+        [Route("User/{userName}")]
+        public ActionResult Detail(string userName)
+        {
+            ApplicationUser reqUser = db.Users
+               .Where(u => u.UserName == userName)
+               .FirstOrDefault();
+            ViewBag.sonnetList = db.Bookmarks
+                .Where(b => b.Owner.Id == reqUser.Id)
+                .OrderByDescending(b => b.Created)
+                .ToList();
+            return View(reqUser);
         }
 
         // CREATE: Bookmark
@@ -44,7 +71,12 @@ namespace Sonnetly.Controllers
             return View();
         }
 
-
+        //GET: All Sonnets
+        public ActionResult AllSonnets()
+        {
+            ViewBag.sonnetList = db.Bookmarks.OrderByDescending(m => m.Created).ToList();
+            return View();
+        }
         
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sonnetly.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Sonnetly.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             ViewBag.path = Directory.GetCurrentDirectory();
@@ -28,5 +31,6 @@ namespace Sonnetly.Controllers
 
             return View();
         }
+        
     }
 }

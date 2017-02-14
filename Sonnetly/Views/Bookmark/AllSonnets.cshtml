@@ -1,0 +1,27 @@
+﻿@model Sonnetly.Models.Bookmarks
+
+@{
+    ViewBag.Title = "AllSonnets";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            This is where all of the Sonnets should show up...
+        </p>
+        @foreach (var sonnet in ViewBag.sonnetList)
+            {
+            <div class="panel-heading">
+                @sonnet.Title <span class="badge">@sonnet.NumClicks</span>
+                <sup>@sonnet.User.UserName on @sonnet.Created</sup>
+            </div>
+                <div class="panel-body">
+                    @sonnet.Desc
+                    @sonnet.NewUrl
+                </div>
+        }
+    </div>
+</div>
