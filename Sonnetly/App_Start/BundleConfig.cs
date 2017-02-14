@@ -21,11 +21,16 @@ namespace Sonnetly
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/custom.js",
+                      "~/Scripts/wow.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/style.css",
+                      "~/Content/font-awesome.min.cs",
+                      "~/Content/animate.css",
+                      "~/Content/Site.css"));
         }
     }
 }

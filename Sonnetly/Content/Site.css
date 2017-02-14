@@ -22,3 +22,45 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*------------------------------------*/
+
+.portrait {
+    max-width: 40%;
+    float: left;
+}
+
+.navbar {
+    background-color: #0c0c0c;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.panel-home {
+    background-color: transparent;
+    color: whitesmoke;
+    float: right;
+    margin-right: 10%;
+    border: none;
+}
+
+.panel-home a {
+    color: whitesmoke;
+    font-weight: 800;
+}
+
+.panel-default {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+}
+
+.panel-default a {
+    color: whitesmoke;
+    font-weight: 800;
+}
+
+.panel-default .panel-heading {
+    background-color: transparent;
+    color: whitesmoke;
+}
