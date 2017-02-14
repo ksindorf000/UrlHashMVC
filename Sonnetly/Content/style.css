@@ -8,10 +8,10 @@
 body {
 	line-height: 1.2;
     height: 100%;
-    background: #000 url('https://ryanapsmith.files.wordpress.com/2009/12/step2.jpg') no-repeat center top;
-    background-size: cover;
+    background-color: whitesmoke;
 	font-family: 'Open Sans', sans-serif;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -34,7 +34,7 @@ table {
 .content
 {
 	margin-top: 50px;
-	color: #fff;
+	color: #000;
 }
 .logo img
 {

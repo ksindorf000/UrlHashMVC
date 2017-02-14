@@ -30,7 +30,7 @@
                         <li>@Html.ActionLink("Sonnets", "AllSonnets", "Bookmark")</li>
                         @{ if (Context.User.Identity.IsAuthenticated)
                             {
-                                <li>@Html.ActionLink("My Sonnets", "Detail", "Bookmark")</li>
+                                <li>@Html.ActionLink("My Sonnets", "Index", "Bookmark")</li>
                             }
                         }
                     </ul>

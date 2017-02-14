@@ -38,29 +38,29 @@ textarea {
 
 .panel-home {
     background-color: transparent;
-    color: whitesmoke;
+    color: #0c0c0c;
     float: right;
     margin-right: 10%;
     border: none;
 }
 
 .panel-home a {
-    color: whitesmoke;
+    color: #0c0c0c;
     font-weight: 800;
 }
 
 .panel-default {
     background-color: transparent;
-    color: whitesmoke;
+    color: #0c0c0c;
     border: none;
 }
 
 .panel-default a {
-    color: whitesmoke;
+    color: #0c0c0c;
     font-weight: 800;
 }
 
 .panel-default .panel-heading {
     background-color: transparent;
-    color: whitesmoke;
+    color: #0c0c0c;
 }

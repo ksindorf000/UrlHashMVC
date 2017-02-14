@@ -12,20 +12,20 @@ namespace Sonnetly.Controllers
     public class BookmarkController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-                
+
         // GET: Current User
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
             ApplicationUser currentUser = db.Users
-                .Where(u => u.Id == userId) 
-                .FirstOrDefault(); 
+                .Where(u => u.Id == userId)
+                .FirstOrDefault();
             //User Specific Sonnets
             ViewBag.sonnetList = db.Bookmarks
                 .Where(b => b.Owner.Id == userId)
                 .OrderByDescending(b => b.Created)
                 .ToList();
-            return View(currentUser);
+            return View();
         }
 
 
@@ -65,9 +65,9 @@ namespace Sonnetly.Controllers
                 db.Bookmarks.Add(newBM);
                 db.SaveChanges();
 
-                RedirectToAction("Detail", new { id = newBM.Id });
             }
 
+            RedirectToAction("Index");
             return View();
         }
 
@@ -77,7 +77,16 @@ namespace Sonnetly.Controllers
             ViewBag.sonnetList = db.Bookmarks.OrderByDescending(m => m.Created).ToList();
             return View();
         }
-        
 
+        //SEND: Redirect to original Url
+        [Route("Sonnet/{NewUrl}")]
+        public ActionResult SonnetRedirect(string newUrl)
+        {
+            //Add click to db
+
+            var sonnet = db.Bookmarks.Where(b => b.NewUrl == newUrl).FirstOrDefault();
+
+            return new RedirectResult(sonnet.OriginalUrl);
+        }
     }
 }

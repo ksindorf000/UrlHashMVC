@@ -15,6 +15,9 @@ namespace Sonnetly.Helpers
         private static int lineNum = 0;
         public static string results;
 
+        //https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.mappath(v=vs.110).aspx
+        private static string path = HttpContext.Current.Server.MapPath(@"\App_Data\TheSonnets.txt");
+
         static void Main(string[] args)
         {
         }
@@ -24,6 +27,7 @@ namespace Sonnetly.Helpers
             string original = uInput + ownerId;
 
             string hashKey = Encrypt256(original);
+
 
             //Get lines
             List<string> lineList = new List<string>();
@@ -78,10 +82,7 @@ namespace Sonnetly.Helpers
         {
             int lineNum = 0;
             bool invalid = true;
-
-            //https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.mappath(v=vs.110).aspx
-            var path = HttpContext.Current.Server.MapPath(@"\TextFiles\TheSonnets.txt");
-
+            
             //If first three numbers are out of bounds,
             //get next three numbers
             while (invalid)
@@ -103,7 +104,7 @@ namespace Sonnetly.Helpers
         private static string GetLine(int lineNum)
         {
             //Get Line from File
-            string line = File.ReadLines(@"..\..\TheSonnets.txt").Skip(lineNum).Take(1).First();
+            string line = File.ReadLines(path).Skip(lineNum).Take(1).First();
 
             return line;
         }

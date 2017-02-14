@@ -222,7 +222,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\wow.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="TextFiles\TheSonnets.txt.txt" />
+    <Content Include="App_Data\TheSonnets.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -261,9 +261,7 @@
     <Content Include="Views\Bookmark\Index.cshtml" />
     <Content Include="Views\Bookmark\AllSonnets.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

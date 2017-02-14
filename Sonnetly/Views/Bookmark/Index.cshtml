@@ -4,10 +4,12 @@
     ViewBag.Title = "My Sonnets";
 }
 
-<div class="panel panel-home">
+<div class="panel panel-default">
     <div class="panel-heading">
-        <h1>@ViewBag.Title</h1>
-        <hr />
+        <h1>
+            @ViewBag.Title
+            <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span></a>
+        </h1>
     </div>
     <div class="panel-sonnet">
         <p>
@@ -15,14 +17,14 @@
         </p>
         @foreach (var sonnet in ViewBag.sonnetList)
             {
-                <div class="panel-heading">
-                    @sonnet.Title <span class="badge">@sonnet.NumClicks</span>
-                    <sup>@sonnet.User.UserName on @sonnet.Created</sup>
-                </div>
-                <div class="panel-body">
-                    @sonnet.Desc
-                    @sonnet.NewUrl
-                </div>
+            <div class="panel-heading">
+                @sonnet.Title <span class="badge">@sonnet.NumClicks</span>
+            </div>
+            <div class="panel-body">
+                <p>@sonnet.Created</p>
+                <p>@sonnet.Desc</p>
+                <a href="Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>
+            </div>
             }
     </div>
 </div>

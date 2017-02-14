@@ -2,22 +2,21 @@
     ViewBag.Title = "Home Page";
 }
 
-<img class="portrait" src="http://www.ystari.com/wp-content/uploads/2015/08/Shakespeare.png" />
+<div>
 
+    <img class="portrait" src="http://www.ystari.com/wp-content/uploads/2015/08/Shakespeare.png" />
 
-<div class="panel panel-home">    
-    <div class="panel-heading">
-        <!--<h1>@ViewBag.path</h1>-->
-        <h1>Welcome to Sonnet-ly!</h1>
-        <hr/>
+    <div class="panel panel-home">
+        <div class="panel-heading">
+            <h1>Welcome to Sonnet-ly!</h1>
+            <hr />
+        </div>
+        <div class="panel-body">
+            <p>
+                @Html.ActionLink("Sign Up", "Register", "Account") or @Html.ActionLink("Log In", "Login", "Account")
+                to save custom URLs, written by yours truely!
+            </p>
+        </div>
     </div>
-    <div class="panel-body">
-        <p>
-            @Html.ActionLink("Sign Up", "Register", "Account") or @Html.ActionLink("Log In", "Login", "Account") 
-            to save custom URLs, written by yours truely!
-        </p>
-    </div>
+
 </div>
-
-
-
