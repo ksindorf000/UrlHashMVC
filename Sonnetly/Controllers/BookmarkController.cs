@@ -15,14 +15,33 @@ namespace Sonnetly.Controllers
 
         // GET: All Sonnets
         public ActionResult Index()
-        {            
+        {
             ViewBag.sonnetList = db.Bookmarks
                 .OrderByDescending(b => b.Created)
                 .ToList();
 
             return View();
+        }        
+
+        // GET: Sonnet Details
+        [Authorize]
+        public ActionResult Detail(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var sonnet = db.Bookmarks
+                .Where(b => b.Id == id && b.OwnerId == userId)
+                .FirstOrDefault();
+
+            ViewBag.Clicks = db.Clicks
+                .Where(c => c.BookmarkId == id)
+                .OrderByDescending(c => c.Created)
+                .ToList();
+
+            return View(sonnet);
         }
-        
+
+
         // CREATE: Bookmark
         [Authorize]
         public ActionResult Create()
@@ -48,16 +67,29 @@ namespace Sonnetly.Controllers
 
             return Redirect("Index");
         }
-        
+
         //SEND: Redirect to original Url
         [Route("Sonnet/{NewUrl}")]
         public ActionResult SonnetRedirect(string newUrl)
-        {            
+        {
             var sonnet = db.Bookmarks.Where(b => b.NewUrl == newUrl).FirstOrDefault();
+            string userName = User.Identity.GetUserName();
+            if (userName.Length == 0)
+            {
+                userName = "Guest";
+            }
 
             //Add click to db
             sonnet.NumClicks += 1;
             db.Entry(sonnet).State = EntityState.Modified;
+
+            ClicksLog click = new ClicksLog
+            {
+                BookmarkId = sonnet.Id,
+                Created = DateTime.Now,
+                UserName = userName
+            };
+            db.Clicks.Add(click);
             db.SaveChanges();
 
             return new RedirectResult(sonnet.OriginalUrl);

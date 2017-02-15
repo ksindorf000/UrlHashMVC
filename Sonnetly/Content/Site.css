@@ -30,6 +30,11 @@ body {
     font-family: 'EB Garamond', serif;
 }
 
+a {
+    color: #0c0c0c;
+    font-weight: 800;
+}
+
 .portrait {
     max-width: 40%;
     float: left;
@@ -60,9 +65,9 @@ body {
         padding: 15px;
     }
 
-    .title {
-        font-family: 'Homemade Apple', cursive;
-    }
+.title {
+    font-family: 'Homemade Apple', cursive;
+}
 
 .panel-default {
     background-color: transparent;
@@ -70,16 +75,11 @@ body {
     border: none;
 }
 
-    .panel-default a {
-        color: #0c0c0c;
-        font-weight: 800;
-    }
-
-    .panel-default .panel-heading {
-        background-color: transparent;
-        color: #0c0c0c;
-        font-size: large;
-    }
+.panel-default .panel-heading {
+    background-color: transparent;
+    color: #0c0c0c;
+    font-size: large;
+}
 
 .panel-scroll {
     max-height: 400px;

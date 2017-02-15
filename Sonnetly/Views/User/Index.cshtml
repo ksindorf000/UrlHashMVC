@@ -21,7 +21,7 @@
                 </h4>
             </div>
             <div class="panel-body">
-                <strong>@sonnet.Title</strong>
+                <strong>@Html.ActionLink((string)sonnet.Title, "Detail", "Bookmark", new { id = @sonnet.Id }, null)</strong>
                 <p>@sonnet.Desc</p>
                 <sub>Created on @sonnet.Created.ToString("dd MMM yyyy")</sub>
                 <hr />

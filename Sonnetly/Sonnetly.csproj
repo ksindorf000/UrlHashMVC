@@ -180,9 +180,14 @@
     <Compile Include="Migrations\201702132032531_AddBookmarks.Designer.cs">
       <DependentUpon>201702132032531_AddBookmarks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702150143260_AddedClicksLog.cs" />
+    <Compile Include="Migrations\201702150143260_AddedClicksLog.Designer.cs">
+      <DependentUpon>201702150143260_AddedClicksLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
+    <Compile Include="Models\ClicksLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +266,7 @@
     <Content Include="Views\Bookmark\Create.cshtml" />
     <Content Include="Views\Bookmark\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Bookmark\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -274,6 +280,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702132032531_AddBookmarks.resx">
       <DependentUpon>201702132032531_AddBookmarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702150143260_AddedClicksLog.resx">
+      <DependentUpon>201702150143260_AddedClicksLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -29,15 +29,15 @@ namespace Sonnetly.Controllers
             return View(currentUser);
         }
 
-        // DETAILS: User from Route
-        [Route("User/{userNameX}")]
-        public ActionResult Index(string userNameX)
+        // GET: Sonnets from User in Route
+        [Route("User/{userName}")]
+        public ActionResult Index(string userName)
         {
-            ApplicationUser targetUser = db.Users.Where(u => u.UserName == userNameX).FirstOrDefault();
+            ApplicationUser targetUser = db.Users.Where(u => u.UserName == userName).FirstOrDefault();
             string userId = targetUser.Id;
 
             ViewBag.sonnetList = db.Bookmarks
-                .Where(b => b.Owner.UserName == userNameX)
+                .Where(b => b.Owner.UserName == userName)
                 .OrderByDescending(b => b.Created)
                 .ToList();
 

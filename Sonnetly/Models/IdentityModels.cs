@@ -21,6 +21,7 @@ namespace Sonnetly.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Bookmarks> Bookmarks { get; set; }
+        public DbSet<ClicksLog> Clicks { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

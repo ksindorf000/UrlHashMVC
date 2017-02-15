@@ -1,0 +1,40 @@
+﻿@model Sonnetly.Models.Bookmarks
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="title">
+            <a href="/Sonnet/@Model.NewUrl">@Model.NewUrl</a>
+        </h1>
+    </div>
+    <div class="panel-default panel-scroll">
+
+        <div class="panel-heading">
+            <strong>
+                @Model.Title
+            </strong> &nbsp;
+            <sub>Created by @Model.Owner.UserName on @Model.Created.ToString("dd MMM yyyy")</sub>
+        </div>
+        <div class="panel-body">
+            <p>@Model.Desc</p>
+            <hr />
+        </div>
+        <div class="panel-footer">
+            <strong>This Sonnet has been clicked <span class="badge">@Model.NumClicks</span> times: </strong>
+            <ul>
+                @foreach (var click in ViewBag.Clicks)
+                {
+                    <li>@click.Created</li>
+                    <li>@click.UserName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<p>
+    <a href="@Url.Action("Index", "Bookmark")" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+</p>
