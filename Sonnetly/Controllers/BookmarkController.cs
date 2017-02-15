@@ -192,7 +192,7 @@ namespace Sonnetly.Controllers
 
         //FAVORITE: Add
         [HttpPost]
-        [Route("User/{userName}")]
+        //[Route("User/{userName}")]
         public ActionResult AddFavorite(int id)
         {
             string userId = User.Identity.GetUserId();
@@ -210,6 +210,27 @@ namespace Sonnetly.Controllers
             };
 
             db.Favorites.Add(newFav);
+            db.SaveChanges();
+
+            return RedirectToAction("Detail");
+        }
+
+
+        //FAVORITE: Remove
+        [HttpPost]
+        //[Route("User/{userName}")]
+        public ActionResult RemoveFavorite(int id)
+        {
+            string userId = User.Identity.GetUserId();
+
+            var targetFav = db.Favorites
+                .Where(
+                f => f.BookmarkId == id
+                && f.OwnerId == userId
+                )
+                .FirstOrDefault();
+
+            db.Favorites.Remove(targetFav);
             db.SaveChanges();
 
             return RedirectToAction("Detail");

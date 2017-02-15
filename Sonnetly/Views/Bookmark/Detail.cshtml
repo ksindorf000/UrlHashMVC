@@ -45,24 +45,17 @@
         <div class="panel-footer">
             @if (ViewBag.IsFavorite)
             {
-                        <!--https://forums.asp.net/t/2061730.aspx?Pass+controller+parameter+value+on+button+click+using+MVC+4+-->
-
                 using (Html.BeginForm())
                 {
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <input type="button" value="Remove from Favorites"
-                           onclick="location.href='@Url.Action("Index", "Bookmarks")
-                                       ?id=' + $('@Model.Id').val()" />
+                    Html.BeginForm("AddFavorite", "Bookmark", new { Id = Model.Id }, FormMethod.Post);
                 }
             }
             else
             {
                 using (Html.BeginForm())
                 {
-                    <button type="submit" name="favorite">
-                        <span class="glyphicon glyphicon-glass"></span>
-                        <span class="submit-text">Add to Favorites</span>
-                    </button>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <input type="submit" value="Add to Favorites" class="btn btn-toolbar" />
                 }
             }
         </div>
