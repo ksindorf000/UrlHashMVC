@@ -267,6 +267,8 @@
     <Content Include="Views\Bookmark\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Bookmark\Detail.cshtml" />
+    <Content Include="Views\Bookmark\Edit.cshtml" />
+    <Content Include="Views\Bookmark\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

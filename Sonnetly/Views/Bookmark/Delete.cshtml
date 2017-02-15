@@ -1,20 +1,23 @@
 ﻿@model Sonnetly.Models.Bookmarks
 
+
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Delete";
 }
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h1 class="title">
-            <a href="/Sonnet/@Model.NewUrl">@Model.NewUrl</a>
-            <a href="@Url.Action("Edit", "Bookmark", new { id = Model.Id })" class="btn btn-toolbar"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-            <a href="@Url.Action("Delete", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+        <h1>
+            Are you sure you want to delete this Sonnet?
         </h1>
+        <p>This action cannot be undone!</p>
     </div>
     <div class="panel-default panel-scroll">
 
         <div class="panel-heading">
+            <h3 class="title">
+                <a href="/Sonnet/@Model.NewUrl">@Model.NewUrl</a>
+            </h3>
             <strong>
                 @Model.Title
             </strong> &nbsp;
@@ -38,5 +41,6 @@
 </div>
 
 <p>
-    <a href="@Url.Action("Index", "Bookmark")" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a href="@Url.Action("Index", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</a>
 </p>

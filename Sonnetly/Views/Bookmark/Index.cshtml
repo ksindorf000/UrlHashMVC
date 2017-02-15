@@ -7,8 +7,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h1 class="title">
-            @ViewBag.Title
-            <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span></a>
+            All &nbsp; Sonnets
+            <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span> Add New</a>
         </h1>
     </div>
     <div class="panel-default panel-scroll">
@@ -21,7 +21,9 @@
             <div class="panel-body">
                 <strong>@sonnet.Title</strong>                
                 <p>@sonnet.Desc</p>
-                <sub>Created by @sonnet.Owner.UserName on @sonnet.Created.ToString("dd MMM yyyy")</sub> 
+                <sub>Created by 
+                @Html.ActionLink((string)sonnet.Owner.UserName, "Index", "User", new { userName = sonnet.Owner.UserName }, null) 
+                on @sonnet.Created.ToString("dd MMM yyyy")</sub> 
                 <hr/>               
             </div>
             }
