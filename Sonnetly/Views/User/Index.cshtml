@@ -34,29 +34,29 @@
     </div>
     <div class="col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="title">
-                    @Model.UserName.ToLower()'s &nbsp; Favorite &nbsp; Sonnets
-                </h1>
-            </div>
-            <div class="panel-default panel-scroll">
-                @foreach (var fav in ViewBag.favsList)
+            @if (User.Identity.Name == Model.UserName)
             {
+                <div class="panel-heading">
+                    <h1 class="title">
+                        @Model.UserName.ToLower()'s &nbsp; Favorite &nbsp; Sonnets
+                    </h1>
+                </div>
+                <div class="panel-default panel-scroll">
+                    @foreach (var fav in ViewBag.favsList)
+                    {
                     <div class="panel-heading">
                         <h4>
-                            <a href="/Sonnet/@fav.Bookmark.NewUrl">@fav.Bookmark.NewUrl</a>
+                            <a href="/Sonnet/fav.Bookmark.NewUrl">@fav.Bookmark.NewUrl</a>
                             <span class="badge">@fav.Bookmark.NumClicks</span>
                         </h4>
-                        @using (Html.BeginForm("Favorites", "Bookmark", new { id = fav.Id, command = "Remove" }))
+                        @using (Html.BeginForm("Favorites", "Bookmark", new { id = @fav.Id, command = "Remove" }))
                         {
                         <input type="submit" class="btn btn-default" value="Remove from Favorites" command="Remove" />
                         }
                     </div>
-                }
-            </div>
+                    }
+                </div>
+            }            
         </div>
     </div>
 </div>
-
-
-
