@@ -9,7 +9,7 @@
         <h1 class="title">
             All &nbsp; Sonnets
             <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span> Add New</a>
-        </h1>
+        </h1>       
     </div>
     <div class="panel-default panel-scroll">
         @foreach (var sonnet in ViewBag.sonnetList)
@@ -17,15 +17,26 @@
             <div class="panel-heading">
                 <h4>
                     <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>    <span class="badge">@sonnet.NumClicks</span>
-                </h4>            </div>
-            <div class="panel-body">
-                <strong>@sonnet.Title</strong>                
-                <p>@sonnet.Desc</p>
-                <sub>Created by 
-                @Html.ActionLink((string)sonnet.Owner.UserName, "Index", "User", new { userName = sonnet.Owner.UserName }, null) 
-                on @sonnet.Created.ToString("dd MMM yyyy")</sub> 
-                <hr/>               
+                </h4>
             </div>
-            }
+            <div class="panel-body">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <strong>@Html.ActionLink((string)sonnet.Title, "Detail", "Bookmark", new { id = @sonnet.Id }, null)</strong>
+                }
+                else
+                {
+                    <strong>@sonnet.Title</strong>
+                }
+                <p>@sonnet.Desc</p>
+                <sub>
+                    Created by
+                    @Html.ActionLink((string)sonnet.Owner.UserName, "Index", "User", new { userName = sonnet.Owner.UserName }, null)
+                    on @sonnet.Created.ToString("dd MMM yyyy")
+                </sub>
+                <hr />
+            </div>
+               
+        }
     </div>
 </div>

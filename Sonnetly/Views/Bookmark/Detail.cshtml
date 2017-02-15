@@ -8,8 +8,18 @@
     <div class="panel-heading">
         <h1 class="title">
             <a href="/Sonnet/@Model.NewUrl">@Model.NewUrl</a>
-            <a href="@Url.Action("Edit", "Bookmark", new { id = Model.Id })" class="btn btn-toolbar"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-            <a href="@Url.Action("Delete", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            @if (ViewBag.IsOwner)
+            {
+                <a href="@Url.Action("Edit", "Bookmark", new { id = Model.Id })" class="btn btn-toolbar">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Edit
+                </a>
+                <a href="@Url.Action("Delete", "Bookmark")" class="btn btn-toolbar">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                </a>
+            }
+
         </h1>
     </div>
     <div class="panel-default panel-scroll">
@@ -22,9 +32,6 @@
         </div>
         <div class="panel-body">
             <p>@Model.Desc</p>
-            <hr />
-        </div>
-        <div class="panel-footer">
             <strong>This Sonnet has been clicked <span class="badge">@Model.NumClicks</span> times: </strong>
             <ul>
                 @foreach (var click in ViewBag.Clicks)
@@ -33,10 +40,36 @@
                     <li>@click.UserName</li>
                 }
             </ul>
+            <hr />
         </div>
+        <div class="panel-footer">
+            @if (ViewBag.IsFavorite)
+            {
+                        <!--https://forums.asp.net/t/2061730.aspx?Pass+controller+parameter+value+on+button+click+using+MVC+4+-->
+
+                using (Html.BeginForm())
+                {
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <input type="button" value="Remove from Favorites"
+                           onclick="location.href='@Url.Action("Index", "Bookmarks")
+                                       ?id=' + $('@Model.Id').val()" />
+                }
+            }
+            else
+            {
+                using (Html.BeginForm())
+                {
+                    <button type="submit" name="favorite">
+                        <span class="glyphicon glyphicon-glass"></span>
+                        <span class="submit-text">Add to Favorites</span>
+                    </button>
+                }
+            }
+        </div>
+
     </div>
 </div>
 
 <p>
-    <a href="@Url.Action("Index", "Bookmark")" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+    <a href="@Url.Action("Index", "User")" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
 </p>

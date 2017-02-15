@@ -24,8 +24,6 @@ namespace Sonnetly.Controllers
             return View();
         }
 
-
-
         // GET: Sonnet Details
         [Authorize]
         public ActionResult Detail(int? id)
@@ -38,8 +36,10 @@ namespace Sonnetly.Controllers
             }
 
             var sonnet = db.Bookmarks
-                .Where(b => b.Id == id && b.OwnerId == userId)
+                .Where(b => b.Id == id)
                 .FirstOrDefault();
+
+            var ownerId = sonnet.OwnerId;
 
             if (sonnet == null)
             {
@@ -50,6 +50,15 @@ namespace Sonnetly.Controllers
                 .Where(c => c.BookmarkId == id)
                 .OrderByDescending(c => c.Created)
                 .ToList();
+            
+            ViewBag.IsFavorite = db.Favorites
+                .Where(
+                    f => f.BookmarkId == id
+                    && f.OwnerId == userId
+                    )
+                .Any();
+
+            ViewBag.IsOwner = userId == ownerId ? true : false; 
 
             return View(sonnet);
         }
@@ -110,14 +119,14 @@ namespace Sonnetly.Controllers
 
         // EDIT: Sonnet
         public ActionResult Edit(int? id)
-        {
+        {            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var userId = User.Identity.GetUserId();
-
+                        
             Bookmarks bookmark = db.Bookmarks
                 .Where(b => b.OwnerId == userId)
                 .Where(b => b.Id == id)
@@ -181,6 +190,30 @@ namespace Sonnetly.Controllers
             return RedirectToAction("Index");
         }
 
+        //FAVORITE: Add
+        [HttpPost]
+        [Route("User/{userName}")]
+        public ActionResult AddFavorite(int id)
+        {
+            string userId = User.Identity.GetUserId();
+
+            var targetBM = db.Bookmarks
+                .Where(b => b.Id == id)
+                .FirstOrDefault();
+
+            int targetId = targetBM.Id;
+
+            Favorites newFav = new Favorites
+            {
+                BookmarkId = targetId,
+                OwnerId = userId
+            };
+
+            db.Favorites.Add(newFav);
+            db.SaveChanges();
+
+            return RedirectToAction("Detail");
+        }
 
     }
 }

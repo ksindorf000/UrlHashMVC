@@ -22,7 +22,8 @@ namespace Sonnetly.Models
     {
         public DbSet<Bookmarks> Bookmarks { get; set; }
         public DbSet<ClicksLog> Clicks { get; set; }
-
+        public DbSet<Favorites> Favorites { get; set; }
+        
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

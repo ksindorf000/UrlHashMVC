@@ -184,10 +184,15 @@
     <Compile Include="Migrations\201702150143260_AddedClicksLog.Designer.cs">
       <DependentUpon>201702150143260_AddedClicksLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702150315134_AddedFavoritesModel.cs" />
+    <Compile Include="Migrations\201702150315134_AddedFavoritesModel.Designer.cs">
+      <DependentUpon>201702150315134_AddedFavoritesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
     <Compile Include="Models\ClicksLog.cs" />
+    <Compile Include="Models\Favorites.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -285,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702150143260_AddedClicksLog.resx">
       <DependentUpon>201702150143260_AddedClicksLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702150315134_AddedFavoritesModel.resx">
+      <DependentUpon>201702150315134_AddedFavoritesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
