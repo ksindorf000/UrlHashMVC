@@ -26,6 +26,12 @@ namespace Sonnetly.Controllers
                 .Where(b => b.Owner.Id == userId)
                 .OrderByDescending(b => b.Created)
                 .ToList();
+
+            ViewBag.favsList = db.Favorites
+                .Where(f => f.Owner.Id == userId)
+                .OrderByDescending(f => f.Bookmark.Title)
+                .ToList();
+
             return View(currentUser);
         }
 

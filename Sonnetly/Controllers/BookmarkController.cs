@@ -91,7 +91,7 @@ namespace Sonnetly.Controllers
             {
                 var targetFav = db.Favorites
                     .Where(
-                    f => f.BookmarkId == id
+                    f => f.Id == id
                     && f.OwnerId == userId
                     )
                     .FirstOrDefault();
