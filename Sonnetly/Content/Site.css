@@ -27,6 +27,7 @@ textarea {
 
 body {
     padding-bottom: 130px;
+    font-family: 'EB Garamond', serif;
 }
 
 .portrait {
@@ -45,13 +46,22 @@ body {
     background-color: transparent;
     color: #0c0c0c;
     float: right;
-    margin-right: 10%;
+    margin-right: 5%;
     border: none;
+    width: 50%;
 }
 
     .panel-home a {
         color: #0c0c0c;
         font-weight: 800;
+    }
+
+    .panel-home li {
+        padding: 15px;
+    }
+
+    .title {
+        font-family: 'Homemade Apple', cursive;
     }
 
 .panel-default {
@@ -68,14 +78,11 @@ body {
     .panel-default .panel-heading {
         background-color: transparent;
         color: #0c0c0c;
+        font-size: large;
     }
 
-.panel-home .panel-body {
+.panel-scroll {
     max-height: 400px;
     overflow: scroll;
     overflow-x: hidden;
-}
-
-.panel-home li {
-    padding: 15px;
 }

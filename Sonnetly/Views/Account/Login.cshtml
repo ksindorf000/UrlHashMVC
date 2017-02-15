@@ -6,7 +6,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>@ViewBag.Title</h2>
+        <h2 class="title">@ViewBag.Title</h2>
     </div>
     <div class="panel-body">
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

@@ -6,21 +6,22 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h1>
+        <h1 class="title">
             @ViewBag.Title
             <a href="@Url.Action("Create", "Bookmark")" class="btn btn-toolbar"><span class="glyphicon glyphicon-plus"></span></a>
         </h1>
     </div>
-    <div class="panel-default">
+    <div class="panel-default panel-scroll">
         @foreach (var sonnet in ViewBag.sonnetList)
             {
             <div class="panel-heading">
-                <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>    <span class="badge">@sonnet.NumClicks</span>
-            </div>
+                <h4>
+                    <a href="/Sonnet/@sonnet.NewUrl">@sonnet.NewUrl</a>    <span class="badge">@sonnet.NumClicks</span>
+                </h4>            </div>
             <div class="panel-body">
-                <h4>@sonnet.Title</h4>                
+                <strong>@sonnet.Title</strong>                
                 <p>@sonnet.Desc</p>
-                <sub>Create by @sonnet.Owner.UserName on @sonnet.Created</sub> 
+                <sub>Created by @sonnet.Owner.UserName on @sonnet.Created.ToString("dd MMM yyyy")</sub> 
                 <hr/>               
             </div>
             }
