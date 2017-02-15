@@ -43,21 +43,22 @@
             <hr />
         </div>
         <div class="panel-footer">
+
             @if (ViewBag.IsFavorite)
             {
-                using (Html.BeginForm())
+                using (Html.BeginForm("Favorites", "Bookmark", new { id = Model.Id, command = "Remove" }))
                 {
-                    Html.BeginForm("AddFavorite", "Bookmark", new { Id = Model.Id }, FormMethod.Post);
+                    <input type="submit" class="btn btn-default" value="Remove from Favorites" command="Remove" />
                 }
             }
             else
             {
-                using (Html.BeginForm())
+                using (Html.BeginForm("Favorites", "Bookmark", new { id = Model.Id, command = "Add" }))
                 {
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <input type="submit" value="Add to Favorites" class="btn btn-toolbar" />
+                    <input type="submit" class="btn btn-default" value="Add to Favorites" command="Add" />
                 }
             }
+
         </div>
 
     </div>

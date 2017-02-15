@@ -63,6 +63,45 @@ namespace Sonnetly.Controllers
             return View(sonnet);
         }
 
+        //FAVORITES: Detail
+        [HttpPost]
+        public ActionResult Favorites(int? id, string command)
+        {
+            string userId = User.Identity.GetUserId();
+
+            var targetBM = db.Bookmarks
+                .Where(b => b.Id == id)
+                .FirstOrDefault();
+
+            //ADD
+            if (command.Equals("Add"))
+            {
+                Favorites newFav = new Favorites
+                {
+                    BookmarkId = targetBM.Id,
+                    OwnerId = userId
+                };
+
+                db.Favorites.Add(newFav);
+                db.SaveChanges();
+            }
+
+            //REMOVE
+            else if (command.Equals("Remove"))
+            {
+                var targetFav = db.Favorites
+                    .Where(
+                    f => f.BookmarkId == id
+                    && f.OwnerId == userId
+                    )
+                    .FirstOrDefault();
+
+                db.Favorites.Remove(targetFav);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Detail", "Bookmark", new { id = targetBM.Id });
+        }
 
         // CREATE: Bookmark
         [Authorize]
@@ -188,52 +227,6 @@ namespace Sonnetly.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
-        }
-
-        //FAVORITE: Add
-        [HttpPost]
-        //[Route("User/{userName}")]
-        public ActionResult AddFavorite(int id)
-        {
-            string userId = User.Identity.GetUserId();
-
-            var targetBM = db.Bookmarks
-                .Where(b => b.Id == id)
-                .FirstOrDefault();
-
-            int targetId = targetBM.Id;
-
-            Favorites newFav = new Favorites
-            {
-                BookmarkId = targetId,
-                OwnerId = userId
-            };
-
-            db.Favorites.Add(newFav);
-            db.SaveChanges();
-
-            return RedirectToAction("Detail");
-        }
-
-
-        //FAVORITE: Remove
-        [HttpPost]
-        //[Route("User/{userName}")]
-        public ActionResult RemoveFavorite(int id)
-        {
-            string userId = User.Identity.GetUserId();
-
-            var targetFav = db.Favorites
-                .Where(
-                f => f.BookmarkId == id
-                && f.OwnerId == userId
-                )
-                .FirstOrDefault();
-
-            db.Favorites.Remove(targetFav);
-            db.SaveChanges();
-
-            return RedirectToAction("Detail");
         }
 
     }
