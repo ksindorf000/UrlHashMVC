@@ -48,6 +48,24 @@ namespace Sonnetly.Controllers
                 .ToList();
 
             return View(targetUser);
-        }        
+        }
+
+        // GET: Current User
+        [Authorize]
+        public ActionResult Favorites(string userName)
+        {
+            string userId = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault();
+            
+            ViewBag.favsList = db.Favorites
+                .Where(f => f.Owner.Id == userId)
+                .OrderByDescending(f => f.Bookmark.Title)
+                .ToList();
+
+            return View(currentUser);
+        }
+
     }
 }

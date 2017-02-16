@@ -26,12 +26,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         <li>@Html.ActionLink("All Sonnets", "Index", "Bookmark")</li>
                         @{ if (Context.User.Identity.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("My Sonnets", "Index", "User")</li>
+                                <li>@Html.ActionLink("My Favorites", "Favorites", "User", new { id = User.Identity.Name })</li>
                             }
                         }
                     </ul>

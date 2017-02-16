@@ -62,7 +62,7 @@ namespace Sonnetly.Controllers
 
             return View(sonnet);
         }
-
+        
         //FAVORITES: Detail
         [HttpPost]
         public ActionResult Favorites(int? id, string command)
@@ -90,17 +90,13 @@ namespace Sonnetly.Controllers
             else if (command.Equals("Remove"))
             {
                 var targetFav = db.Favorites
-                    .Where(
-                    f => f.Id == id
-                    && f.OwnerId == userId
-                    )
-                    .FirstOrDefault();
+                    .Find(id);
 
                 db.Favorites.Remove(targetFav);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Detail", "Bookmark", new { id = targetBM.Id });
+            return RedirectToAction("Index", "User");
         }
 
         // CREATE: Bookmark
