@@ -26,17 +26,12 @@ namespace Sonnetly.Controllers
                 .Where(b => b.Owner.Id == userId)
                 .OrderByDescending(b => b.Created)
                 .ToList();
-
-            ViewBag.favsList = db.Favorites
-                .Where(f => f.Owner.Id == userId)
-                .OrderByDescending(f => f.Bookmark.Title)
-                .ToList();
-
+            
             return View(currentUser);
         }
 
-        // GET: Sonnets from User in Route
-        [Route("User/{userName}")]
+        // GET: Sonnets for User in Route
+        [Route("u/{userName}")]
         public ActionResult Index(string userName)
         {
             ApplicationUser targetUser = db.Users.Where(u => u.UserName == userName).FirstOrDefault();
@@ -50,7 +45,7 @@ namespace Sonnetly.Controllers
             return View(targetUser);
         }
 
-        // GET: Current User
+        // GET: Favorites for Current User
         [Authorize]
         public ActionResult Favorites(string userName)
         {
@@ -58,7 +53,7 @@ namespace Sonnetly.Controllers
             ApplicationUser currentUser = db.Users
                 .Where(u => u.Id == userId)
                 .FirstOrDefault();
-            
+
             ViewBag.favsList = db.Favorites
                 .Where(f => f.Owner.Id == userId)
                 .OrderByDescending(f => f.Bookmark.Title)

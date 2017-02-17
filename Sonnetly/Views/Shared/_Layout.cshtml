@@ -30,7 +30,7 @@
                         @{ if (Context.User.Identity.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("My Sonnets", "Index", "User")</li>
-                                <li>@Html.ActionLink("My Favorites", "Favorites", "User", new { id = User.Identity.Name })</li>
+                                <li>@Html.ActionLink("My Favorites", "Favorites", "User", new { userName = @User.Identity.Name }, null)</li>
                             }
                         }
                     </ul>
